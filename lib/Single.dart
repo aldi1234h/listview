@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  List<Color> colors = [
-    Colors.amber,
+  final List<Color> colors = [
+    Colors.cyan,
     Colors.blue,
-    Colors.greenAccent,
-    Colors.redAccent,
-    Colors.blueAccent
+    Colors.brown,
+    Colors.green,
+    Colors.orange
   ];
-  List<String> nama = [
-    "KangPenca",
-    "KangPecel",
-    "KangSantet",
-    "KangGendang",
-    "KangJagal"
+  final List<Color> colors2 = [
+    Colors.amber,
+    Colors.deepOrange,
+    Colors.black,
+    Colors.pink,
+    Colors.purple
   ];
 
-  get style => null;
+  final List<String> name = ['Albert', 'Wan', 'Xin', 'Lemon', 'Asep'];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,104 +27,103 @@ class MyApp extends StatelessWidget {
           child: SingleChildScrollView(
             child: Container(
               child: Column(
-                children: [
+                children: <Widget>[
                   Container(
                     height: 200,
-                    child: ListView(
+                    width: 300,
+                    child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                          padding: EdgeInsets.only(top: 10),
-                          height: 200,
+                      itemBuilder: (context, index) {
+                        return Container(
                           width: 400,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: colors.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                width: 300,
-                                height: 150,
-                                color: colors[index],
-                                child: Center(
-                                  child: Text(
-                                    '${nama[index]}',
-                                    style: TextStyle(
-                                        fontSize: 22, color: Colors.white),
-                                  ),
-                                ),
-                              );
-                            },
+                          height: 150,
+                          color: colors[index],
+                          child: Center(
+                            child: Text(
+                              '${name[index]}',
+                              style:
+                                  TextStyle(fontSize: 22, color: Colors.white),
+                            ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
+                      itemCount: colors.length,
+                    ),
+                  ),
+                  Container(
+                    height: 300,
+                    width: 500,
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          width: 400,
+                          height: 150,
+                          color: colors[index],
+                          child: Center(
+                            child: Text(
+                              '${name[index]}',
+                              style:
+                                  TextStyle(fontSize: 22, color: Colors.white),
+                            ),
+                          ),
+                        );
+                      },
+                      itemCount: colors.length,
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 10),
-                    height: 200,
-                    width: 400,
+                    height: 80,
                     child: ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemCount: colors.length,
-                        itemBuilder: (context, index) {
-                          return Container(
-                            width: 500,
-                            height: 200,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: colors.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          margin: EdgeInsets.all(2),
+                          width: 100,
+                          height: 50,
+                          child: Card(
                             color: colors[index],
                             child: Center(
                               child: Text(
-                                '${nama[index]}',
+                                '${name[index]}',
                                 style: TextStyle(
                                     fontSize: 22, color: Colors.white),
                               ),
                             ),
-                          );
-                        }),
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(top: 10),
-                    height: 100,
-                    child: GridView.count(
-                      scrollDirection: Axis.horizontal,
-                      crossAxisCount: 1,
-                      children: List.generate(5, (index) {
-                        return Container(
-                          child: Card(
-                            color: colors[index],
-                            child: Center(
-                              child: Text(
-                                '${nama[index]}',
-                                style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
-                              ),
-                            ),
                           ),
                         );
-                      }),
+                      },
                     ),
                   ),
                   Container(
                     padding: EdgeInsets.only(top: 10),
-                    height: 100,
-                    child: GridView.count(
+                    height: 80,
+                    child: ListView.builder(
+                      shrinkWrap: true,
                       scrollDirection: Axis.horizontal,
-                      crossAxisCount: 1,
-                      children: List.generate(5, (index) {
+                      itemCount: colors2.length,
+                      itemBuilder: (context, index) {
                         return Container(
+                          margin: EdgeInsets.all(2),
+                          width: 100,
+                          height: 50,
                           child: Card(
-                            color: colors[index],
+                            color: colors2[index],
                             child: Center(
                               child: Text(
-                                '${nama[index]}',
+                                '${name[index]}',
                                 style: TextStyle(
-                                    fontSize: 15, color: Colors.white),
+                                    fontSize: 22, color: Colors.white),
                               ),
                             ),
                           ),
                         );
-                      }),
+                      },
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
